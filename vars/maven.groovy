@@ -25,9 +25,9 @@ def call(){
           sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build'
       }
   }
-  env.TAREA = 'Paso 5: Curl Springboot Gradle sleep 20'
+  env.TAREA = 'Paso 5: Levantar Springboot APP'
   stage("${env.TAREA}"){
-      sh "gradle bootRun&"
+      sh 'mvn spring-boot:run &'
       sh "sleep 20 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
   }
   env.TAREA = 'Paso 6: Subir Nexus'
