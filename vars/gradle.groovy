@@ -1,9 +1,10 @@
-/*
-	forma de invocación de método call:
-	def ejecucion = load 'script.groovy'
-	ejecucion.call()
-*/
 def call(stages){
+
+
+      def listStages= stages.split(";")
+    listStages.each {
+        println("stages enviados ===> ${it} ")
+    }
 
     def listStagesOrder = [
         'build': 'stageCleanBuildTest',
