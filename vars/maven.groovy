@@ -3,12 +3,7 @@
 	def ejecucion = load 'script.groovy'
 	ejecucion.call()
 */
-  def stagesList= stages.split(;)
-
-    stagesList.each{
-        println("stages enviados ====> ${it}")
-    }
-
+def call(stages){
 
   env.TAREA = 'Paso 1: Compliar'
   stage("${env.TAREA}"){

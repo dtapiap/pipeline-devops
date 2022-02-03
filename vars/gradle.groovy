@@ -5,12 +5,6 @@
 */
 def call(stages){
 
-    def stagesList= stages.split(;)
-
-    stagesList.each{
-        println("stages enviados ====> ${it}")
-    }
-
     env.TAREA = 'Paso 1: Build && Test'
     stage("${env.TAREA}"){
         sh "gradle clean build"
