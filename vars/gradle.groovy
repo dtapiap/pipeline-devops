@@ -24,12 +24,8 @@ def call(stages){
 
 
         listStagesOrder.each { stageName, stageFunction ->
-            stages.each{ stageToExecute ->//variable as param
-                if(stageName.equals(stageToExecute)){
-                echo 'Ejecutando  DAniel TAPIA ' + stageFunction
-                "${stageFunction}"()
-                }
-            }
+          
+          println("stages enviados ===> ${stageName} and ${stageFunction}  ")
         }
 
 
