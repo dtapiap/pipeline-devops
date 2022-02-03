@@ -24,11 +24,9 @@ pipeline {
                   switch(params.compileTool)
                     {
                         case 'Maven':
-                        
                             maven.call(params.stages);
                         break;
                         case 'Gradle':
-                        
                             gradle.call(params.stages);
                         break;
                     }
