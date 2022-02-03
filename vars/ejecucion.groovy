@@ -11,9 +11,7 @@ pipeline {
             choices: ['Maven', 'Gradle'],
             description: 'Seleccione herramienta de compilacion'
         )
-        parameters {
-        text description: 'intradusca o enviar los stages separados por " ; " ( punto y coma) vacío si necesita dodo los stages.', name: 'stages'
-}
+      (text description: 'intradusca o enviar los stages separados por " ; " ( punto y coma) vacío si necesita dodo los stages.', name: 'stages')
 
 
     }
