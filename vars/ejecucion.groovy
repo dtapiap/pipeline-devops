@@ -7,6 +7,7 @@ pipeline {
     }
     parameters {
         choice choices: ['Maven','Gradle'], description: 'Seleccione una herramienta para preceder a compilar', name: 'compileTool'
+        text description: 'intradusca o enviar los stages separados por " ; " ( punto y coma) vacío si necesita dodo los stages.', name: 'stages'
 
     }
     stages {
@@ -16,10 +17,10 @@ pipeline {
                   switch(params.compileTool)
                     {
                         case 'Maven':
-                            maven.call();
+                            maven.call(params.stages);
                         break;
                         case 'Gradle':
-                            gradle.call();
+                            gradle.call(params.stages);
                         break;
                     }
                 }
