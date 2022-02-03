@@ -6,13 +6,8 @@ pipeline {
         NEXUS_PASSWORD     = credentials('NEXUS-PASS')
     }
     parameters {
-        choice(
-            name:'compileTool',
-            choices: ['Maven', 'Gradle'],
-            description: 'Seleccione herramienta de compilacion'
-        )
-      (text description: 'intradusca o enviar los stages separados por " ; " ( punto y coma) vacío si necesita dodo los stages.', name: 'stages')
-
+        choice name:'compileTool', choices: ['Maven', 'Gradle'],description: 'Seleccione herramienta de compilacion'
+        text description: 'intradusca o enviar los stages separados por " ; " ( punto y coma) vacío si necesita dodo los stages.', name: 'stages'
 
     }
     stages {
