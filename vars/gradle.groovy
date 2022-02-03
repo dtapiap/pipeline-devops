@@ -46,7 +46,7 @@ def stageSonar(){
     env.DESCRTIPTION_STAGE = "Paso 2: Sonar - Análisis Estático"
     stage("${env.DESCRTIPTION_STAGE}"){
         env.STAGE = "sonar - ${DESCRTIPTION_STAGE}"
-        withSonarQubeEnv('sonarqube3') {
+        withSonarQubeEnv('sonarqube') {
             sh "echo  ${env.STAGE}"
             sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build'
         }
@@ -67,7 +67,7 @@ def stageRunSpringCurl(){
 def stageUploadNexus(){
     env.DESCRTIPTION_STAGE = "Paso 4: Subir Nexus"
     stage("${env.DESCRTIPTION_STAGE}"){
-        nexusPublisher nexusInstanceId: 'nexus3',
+        nexusPublisher nexusInstanceId: 'nexus',
         nexusRepositoryId: 'devops-usach-nexus',
         packages: [
             [$class: 'MavenPackage',
@@ -95,7 +95,7 @@ def stageDownloadNexus(){
    stage("${env.DESCRTIPTION_STAGE}"){
         env.STAGE = "download_nexus - ${DESCRTIPTION_STAGE}"
         sh "echo  ${env.STAGE}"
-        sh ' curl -X GET -u $NEXUS_USER:$NEXUS_PASSWORD "http://nexus3:8081/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar" -O'
+        sh ' curl -X GET -u $NEXUS_USER:$NEXUS_PASSWORD "http://nexus:8081/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar" -O'
     }
 }
 
