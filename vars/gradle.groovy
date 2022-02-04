@@ -25,7 +25,7 @@ def call(stages){
 
         listStagesOrder.each { stageName, stageFunction ->
           
-          println( "haciendo cagas${listStagesOrder.each}")
+          println( "haciendo cagas${each}")
           println("stages enviados ===> ${stageName} and ${stageFunction}  ")
 
 
