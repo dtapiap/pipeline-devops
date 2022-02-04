@@ -19,20 +19,10 @@ def call(stages){
     if (stages.isEmpty()) {
         echo 'El pipeline se ejecutará completo'
         allStages()
-    } else {
-        echo 'Stages a ejecutar :' + stages
-     listStagesOrder.each { stageName, stageFunction ->
-            listStages.each{ stageToExecute ->//variable as param
-                if(stageName.equals(stageToExecute)){
-                println( 'Ejecutando ' + stageFunction)
-                  "${stageFunction}"()
-                }
-
-
     }
 
-}
-    }
+
+    
 
 def stageCleanBuildTest(){
     env.DESCRTIPTION_STAGE = 'Paso 1: Build - Test'
