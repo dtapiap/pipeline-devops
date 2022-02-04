@@ -21,18 +21,18 @@ def call(stages){
         allStages()
     } else {
         echo 'Stages a ejecutar :' + stages
-
-        listStages.each{ stageToExecute ->
+     listStagesOrder.each { stageName, stageFunction ->
+            listStages.each{ stageToExecute ->//variable as param
                 if(stageName.equals(stageToExecute)){
-                println ('ViejoPerro  DAniel TAPIA ' +  ${stageFunction})
-                ${stageFunction}()
+                println( 'Ejecutando ' + stageFunction)
+                  "${stageFunction}"()
                 }
-            }
 
 
     }
 
 }
+    }
 
 def stageCleanBuildTest(){
     env.DESCRTIPTION_STAGE = 'Paso 1: Build - Test'
