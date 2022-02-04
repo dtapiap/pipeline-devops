@@ -22,10 +22,10 @@ def call(stages){
     } else {
         echo 'Stages a ejecutar :' + stages
 
-        listStages.each{ stageToExecute ->//variable as param
+        listStages.each{ stageToExecute ->
                 if(stageName.equals(stageToExecute)){
-                echo 'Ejecutando  DAniel TAPIA ' + stageFunction
-                "${stageFunction}"()
+                println ('ViejoPerro  DAniel TAPIA ' +  ${stageFunction})
+                ${stageFunction}()
                 }
             }
 
