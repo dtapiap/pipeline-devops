@@ -1,11 +1,5 @@
 def call(stages){
 
-
-      def listStages= stages.split(";")
-    listStages.each {
-        println("stages enviados ===> ${it} ")
-    }
-
     def listStagesOrder = [
         'build': 'stageCleanBuildTest',
         'sonar': 'stageSonar',
@@ -21,14 +15,14 @@ def call(stages){
         allStages()
     } else {
         echo 'Stages a ejecutar :' + stages
-
-        listStages.each{ stageToExecute ->
+        listStagesOrder.each { stageName, stageFunction ->
+            stages.each{ stageToExecute ->//variable as param
                 if(stageName.equals(stageToExecute)){
-                println ('ViejoPerro  DAniel TAPIA ' +  ${stageFunction}
+                echo 'Ejecutando ' + stageFunction
                 "${stageFunction}"()
                 }
             }
-
+        }
 
     }
 
