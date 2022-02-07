@@ -3,8 +3,27 @@ import test.*
 
 def call(stages){
 
-def utils  = new test.UtilMethods();
-def pipelineStages = (utils.isCIorCD().contains('ci')) ? [println  ('ACA LLEGAMOS CI CI')]: [println  ('ACA terminamos CD CD')]
+
+
+def isCIorCD(){
+	if (env.GIT_BRANCH.contains('develop') || env.GIT_BRANCH.contains('feature')){
+		figlet 'Integracion Continua'
+        def ciStages()
+		return 'ci'
+	} else {
+		figlet 'Entrega Continua'
+        def ciStages()
+		return 'cd'
+	}
+}
+
+
+
+
+
+
+// def utils  = new test.UtilMethods();
+// def pipelineStages = (utils.isCIorCD().contains('ci')) ? [println  ('ACA LLEGAMOS CI CI')]: [println  ('ACA terminamos CD CD')]
 
 
 //    def listStagesOrder = [
