@@ -5,17 +5,17 @@ def call(stages){
 
 
 
-def isCIorCD(){
+
 	if (env.GIT_BRANCH.contains('develop') || env.GIT_BRANCH.contains('feature')){
 		figlet 'Integracion Continua'
         def ciStages()
-		return 'ci'
+		
 	} else {
 		figlet 'Entrega Continua'
         def ciStages()
-		return 'cd'
+
 	}
-}
+
 
 
 
