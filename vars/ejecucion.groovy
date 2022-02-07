@@ -1,4 +1,4 @@
-def call(){
+def call(varTOOLS,varStages){
 
 pipeline {
     agent any
