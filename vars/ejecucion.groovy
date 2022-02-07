@@ -1,5 +1,5 @@
 
-def varTOOLS =  ${varTOOLS}
+def varTOOLS =  env.varTOOLS
 def call(){
 pipeline {
     agent any
@@ -15,8 +15,8 @@ pipeline {
     stages {
         stage("Pipeline"){
             steps {
-                
-                figlet  "${varTOOLS}"
+
+                figlet  " esta wea pasa ${varTOOLS}"
                 script{
                   switch(params.compileTool)
                     {
