@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage("Pipeline"){
             steps {
-                env.varTOOLS
+                
                 figlet  "${varTOOLS}"
                 script{
                   switch(params.compileTool)
