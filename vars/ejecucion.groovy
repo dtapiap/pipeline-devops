@@ -20,15 +20,15 @@ pipeline {
                 println  ('ACA LLEGAMOS NO MAS ' + varStages)
                 figlet  varTOOLS
                 script{
-                  switch(params.compileTool)
+                  switch(varTOOLS)
                     {
                         case 'Maven':
                         figlet  "corriendo Maven"
-                            maven.call(params.stages);
+                            maven.call(varStages);
                         break;
                         case 'Gradle':
                         figlet  "corriendo Gradlet"
-                            gradle.call(params.stages);
+                            gradle.call(varStages);
                         break;
                     }
                 }
