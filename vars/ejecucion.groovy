@@ -17,10 +17,8 @@ pipeline {
             steps {
 
                 println  ('ACA LLEGAMOS NO MAS ' + varTOOLS)
-                println  ('ACA LLEGAMOS NO MAS ' + env.varTOOLS)
-
+                println  ('ACA LLEGAMOS NO MAS ' + varStages)
                 figlet  varTOOLS
-                 figlet  env.varTOOLS
                 script{
                   switch(params.compileTool)
                     {
