@@ -17,9 +17,11 @@ pipeline {
                   switch(params.compileTool)
                     {
                         case 'Maven':
+                        figlet  "corriendo Maven"
                             maven.call(params.stages);
                         break;
                         case 'Gradle':
+                        figlet  "corriendo Gradlet"
                             gradle.call(params.stages);
                         break;
                     }
