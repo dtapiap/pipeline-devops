@@ -131,7 +131,7 @@ def stageCurlJar(){
     stage("${env.DESCRTIPTION_STAGE}"){
         env.STAGE = "curl_jar - ${DESCRTIPTION_STAGE}"
         sh "echo  ${env.STAGE}"
-        sh "sleep 20 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
+        sh "sleep 10 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
     }
 }
 
