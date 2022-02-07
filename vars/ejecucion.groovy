@@ -1,11 +1,11 @@
-
-def varTOOLS =  "daniel"
 def call(){
+    
 pipeline {
     agent any
     environment {
         NEXUS_USER         = credentials('NEXUS-USER')
         NEXUS_PASSWORD     = credentials('NEXUS-PASS')
+        varTOOLS =  "daniel"
     }
     parameters {
         choice choices: ['Maven','Gradle'], description: 'Seleccione una herramienta para preceder a compilar', name: 'compileTool'
