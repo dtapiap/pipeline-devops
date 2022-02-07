@@ -5,7 +5,7 @@ pipeline {
     environment {
         NEXUS_USER         = credentials('NEXUS-USER')
         NEXUS_PASSWORD     = credentials('NEXUS-PASS')
-        //varTOOLS =  "${varTOOLS}"
+    
     }
     parameters {
         choice choices: ['Maven','Gradle'], description: 'Seleccione una herramienta para preceder a compilar', name: 'compileTool'
@@ -16,7 +16,7 @@ pipeline {
         stage("Pipeline"){
             steps {
 
-                //println  " ACA LLEGAMOS NO MAS + ${varTOOLS}"
+                println  " ACA LLEGAMOS NO MAS + " varTOOLS
                 script{
                   switch(params.compileTool)
                     {
