@@ -8,11 +8,11 @@ def call(stages){
 
 	if (env.GIT_BRANCH.contains('develop') || env.GIT_BRANCH.contains('feature')){
 		figlet 'Integracion Continua'
-        def ciStages()
+       ciStages()
 		
 	} else {
 		figlet 'Entrega Continua'
-        def ciStages()
+       ciStages()
 
 	}
 
