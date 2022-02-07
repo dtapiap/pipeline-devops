@@ -1,9 +1,9 @@
 import utilities.*
-import pipeline.*
+import test.*
 
 def call(stages){
 
-def utils  = new test.UtilMethods()
+def utils  = new test.UtilMethods();
 def pipelineStages = (utils.isCIorCD().contains('ci')) ? [println  ('ACA LLEGAMOS CI CI')]: [println  ('ACA terminamos CD CD')]
 
 
