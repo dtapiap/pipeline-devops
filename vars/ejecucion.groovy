@@ -16,7 +16,7 @@ pipeline {
         stage("Pipeline"){
             steps {
 
-                echo  " esta wea pasa"+ ${varTOOLS}
+                echo  " esta wea pasa + ${varTOOLS}"
                 script{
                   switch(params.compileTool)
                     {
