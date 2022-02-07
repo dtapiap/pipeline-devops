@@ -1,33 +1,54 @@
+import utilities.*
+
 def call(stages){
 
-def listStages = stages.split(";")
+    //def stagesList = stages.split(";")
+    // stagesList.each{
+    //     println("===>${it}")
+    //     "${it}"()
 
-    def listStagesOrder = [
+    // }
+
+   def listStagesOrder = [
         'build': 'stageCleanBuildTest',
         'sonar': 'stageSonar',
-        'run_spring_curl': 'stageRunSpringCurl',
+        'curl_spring': 'stageRunSpringCurl',
         'upload_nexus': 'stageUploadNexus',
         'download_nexus': 'stageDownloadNexus',
         'run_jar': 'stageRunJar',
         'curl_jar': 'stageCurlJar'
     ]
 
-    if (stages.isEmpty()) {
+    def arrayUtils = new array.arrayExtentions();
+    def stagesArray = []
+        stagesArray = arrayUtils.searchKeyInArray(stages, ";", listStagesOrder)
+
+    if (stagesArray.isEmpty()) {
         echo 'El pipeline se ejecutará completo'
         allStages()
     } else {
         echo 'Stages a ejecutar :' + stages
-       listStagesOrder.each { stageName, stageFunction ->
-            listStages.each{ stageToExecute ->
-                if(stageName.equals(stageToExecute)){
-                println( 'Ejecutando ' + stageFunction)
-                  "${stageFunction}"()
-                 }
-                            }
-                            }
-
+        stagesArray.each{ stageFunction ->//variable as param
+            echo 'Ejecutando ' + stageFunction
+            "${stageFunction}"()
+        }
     }
-
+​
+//     if (stages.isEmpty()) {
+//         echo 'El pipeline se ejecutará completo'
+//         allStages()
+//     } else {
+//         echo 'Stages a ejecutar :' + stages
+//         listStagesOrder.each { stageName, stageFunction ->
+//             stagesList.each{ stageToExecute ->//variable as param
+//                 if(stageName.equals(stageToExecute)){
+//                 echo 'Ejecutando ' + stageFunction
+//                 "${stageFunction}"()
+//                 }
+//             }
+//         }
+// ​
+//     }
 }
 
 def stageCleanBuildTest(){
