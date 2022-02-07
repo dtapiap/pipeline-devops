@@ -18,9 +18,9 @@ pipeline {
         stage("Pipeline"){
             steps {
 
-                println  ('ACA LLEGAMOS NO MAS ' + varTOOLS)
-                println  ('ACA LLEGAMOS NO MAS ' + varStages)
-                figlet  varTOOLS
+                // println  ('ACA LLEGAMOS NO MAS ' + varTOOLS)
+                // println  ('ACA LLEGAMOS NO MAS ' + varStages)
+                // figlet  varTOOLS
                 script{
                   switch(varTOOLS)
                     {

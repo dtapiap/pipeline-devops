@@ -8,7 +8,7 @@ def call(stages){
 
 
 def utils  = new test.UtilMethods()
-def pipelineStages = (utils.isCIorCD().contains('ci')) ? def ciStages(stages) : def cdSteges(stages)
+def pipelineStages = (utils.isCIorCD().contains('ci')) ? [println  ('ACA LLEGAMOS CI CI')]: [println  ('ACA terminamos CD CD')]
 
 
 //    def listStagesOrder = [
