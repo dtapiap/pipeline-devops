@@ -1,30 +1,41 @@
-import utilities.*
-
 def call(stages){
 
-   def listStagesOrder = [
+def listStages = stages.split(";")
+
+    def listStagesOrder = [
         'build': 'stageCleanBuildTest',
         'sonar': 'stageSonar',
-        'curl_spring': 'stageRunSpringCurl',
+        'run_spring_curl': 'stageRunSpringCurl',
         'upload_nexus': 'stageUploadNexus',
         'download_nexus': 'stageDownloadNexus',
         'run_jar': 'stageRunJar',
         'curl_jar': 'stageCurlJar'
     ]
 
-    def arrayUtils = new array.arrayExtentions();
-    def stagesArray = []
-        stagesArray = arrayUtils.searchKeyInArray(stages, ";", listStagesOrder)
-
-    if (stagesArray.isEmpty()) {
+    if (stages.isEmpty()) {
         echo 'El pipeline se ejecutará completo'
         allStages()
     } else {
         echo 'Stages a ejecutar :' + stages
-        stagesArray.each{ stageFunction ->//variable as param
-            echo 'Ejecutando ' + stageFunction
-            "${stageFunction}"()
-        }
+       listStagesOrder.each { stageName, stageFunction ->
+            listStages.each{ stageToExecute ->
+                if(stageName.equals(stageToExecute)){
+                println( 'Ejecutando ' + stageFunction)
+                  "${stageFunction}"()
+                 }
+                            }
+                            }
+
+    }
+
+}
+
+def stageCleanBuildTest(){
+    env.DESCRTIPTION_STAGE = 'Paso 1: Build - Test'
+    stage("${env.DESCRTIPTION_STAGE}"){
+        env.STAGE = "build - ${env.DESCRTIPTION_STAGE}"
+        sh "echo  ${env.STAGE}"
+        sh "gradle clean build"
     }
 }
 
