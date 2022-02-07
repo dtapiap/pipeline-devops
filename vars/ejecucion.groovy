@@ -16,7 +16,7 @@ pipeline {
         stage("Pipeline"){
             steps {
 
-                println  " ACA LLEGAMOS NO MAS + " varTOOLS
+                eco  'ACA LLEGAMOS NO MAS + ' varTOOLS
                 script{
                   switch(params.compileTool)
                     {
