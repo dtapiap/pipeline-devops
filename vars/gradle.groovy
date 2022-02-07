@@ -1,40 +1,71 @@
 import utilities.*
+import pipeline.*
 
 def call(stages){
 
-    //def stagesList = stages.split(";")
-    // stagesList.each{
-    //     println("===>${it}")
-    //     "${it}"()
 
-    // }
 
-   def listStagesOrder = [
-        'build': 'stageCleanBuildTest',
-        'sonar': 'stageSonar',
-        'curl_spring': 'stageRunSpringCurl',
-        'upload_nexus': 'stageUploadNexus',
-        'download_nexus': 'stageDownloadNexus',
-        'run_jar': 'stageRunJar',
-        'curl_jar': 'stageCurlJar'
-    ]
 
-    def arrayUtils = new array.arrayExtentions();
-    def stagesArray = []
-        stagesArray = arrayUtils.searchKeyInArray(stages, ";", listStagesOrder)
 
-    if (stagesArray.isEmpty()) {
-        echo 'El pipeline se ejecutará completo'
-        allStages()
-    } else {
-        echo 'Stages a ejecutar :' + stages
-        stagesArray.each{ stageFunction ->//variable as param
-            echo 'Ejecutando ' + stageFunction
-            "${stageFunction}"()
-        }
-    }
-    
+def utils  = new test.UtilMethods()
+def pipelineStages = (utils.isCIorCD().contains('ci')) ? def ciStages(stages) : def cdSteges(stages)
+
+
+//    def listStagesOrder = [
+//         'build': 'stageCleanBuildTest',
+//         'sonar': 'stageSonar',
+//         'curl_spring': 'stageRunSpringCurl',
+//         'upload_nexus': 'stageUploadNexus',
+//         'download_nexus': 'stageDownloadNexus',
+//         'run_jar': 'stageRunJar',
+//         'curl_jar': 'stageCurlJar'
+//     ]
+
+//     def arrayUtils = new array.arrayExtentions();
+//     def stagesArray = []
+//         stagesArray = arrayUtils.searchKeyInArray(stages, ";", listStagesOrder)
+
+//     if (stagesArray.isEmpty()) {
+//         echo 'El pipeline se ejecutará completo'
+//         allStages()
+//     } else {
+//         echo 'Stages a ejecutar :' + stages
+//         stagesArray.each{ stageFunction ->//variable as param
+//             echo 'Ejecutando ' + stageFunction
+//             "${stageFunction}"()
+//         }
+//     }
+
+
+
+
+
 }
+
+def allStages(){
+    stageCleanBuildTest()
+    stageSonar()
+    stageRunSpringCurl()
+    stageUploadNexus()
+    stageDownloadNexus()
+    stageRunJar()
+    stageCurlJar()
+}
+
+def ciStages(){
+    stageCleanBuildTest()
+    stageSonar()
+    stageRunSpringCurl()
+    stageUploadNexus()
+}
+
+def cdSteges(){
+    stageDownloadNexus()
+    stageRunJar()
+    stageCurlJar()
+}
+
+
 
 def stageCleanBuildTest(){
     env.DESCRTIPTION_STAGE = 'Paso 1: Build - Test'
@@ -120,13 +151,8 @@ def stageCurlJar(){
     }
 }
 
-def allStages(){
-    stageCleanBuildTest()
-    stageSonar()
-    stageRunSpringCurl()
-    stageUploadNexus()
-    stageDownloadNexus()
-    stageRunJar()
-    stageCurlJar()
-}
+
+
 return this;
+
+

@@ -1,3 +1,5 @@
+import pipeline.*
+
 def call(varTOOLS,varStages){
 
 pipeline {
